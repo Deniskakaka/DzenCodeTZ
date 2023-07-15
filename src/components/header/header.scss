@@ -1,0 +1,70 @@
+.header {
+  position: relative;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 20px;
+  background-color: #fff;
+  -webkit-box-shadow: 10px 10px 36px 1px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 10px 10px 36px 1px rgba(0, 0, 0, 0.75);
+  box-shadow: 10px 10px 36px 1px rgba(0, 0, 0, 0.75);
+  z-index: 9999;
+}
+
+.header_wrapper {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.header_logo {
+  color: green;
+  text-transform: uppercase;
+}
+
+.header_search {
+  margin-left: 200px;
+
+  & input {
+    width: 400px;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    background-color: #f7f6f9;
+
+    &::placeholder {
+      font-size: 18px;
+    }
+  }
+}
+
+.header_time {
+  display: flex;
+
+  &__data {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 50px;
+  }
+
+  &__day {
+    font-size: 19px;
+  }
+
+  &__hours {
+    position: relative;
+    align-self: flex-end;
+    margin-left: 55px;
+
+    &::before {
+      position: absolute;
+      content: "";
+      width: 20px;
+      height: 20px;
+      background-image: url("../../images/clock.png");
+      background-repeat: no-repeat;
+      left: -22px;
+    }
+  }
+}

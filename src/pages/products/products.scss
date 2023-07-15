@@ -1,0 +1,37 @@
+.products {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: calc(100% - 90px);
+  width: calc(100% - 250px);
+  margin-left: auto;
+}
+
+.products_filter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  align-self: flex-start;
+  margin-top: 50px;
+  margin-left: 80px;
+
+  & h2 {
+    margin-right: 40px;
+    font-size: 28px;
+  }
+
+  &__selector {
+    & select {
+      width: 200px;
+      padding: 10px;
+      border: none;
+      border-radius: 10px;
+      margin-left: 20px;
+    }
+  }
+}
+
+.products_items {
+  margin-top: 50px;
+  width: 90%;
+}
