@@ -1,7 +1,7 @@
 import { TopMenu } from "./components/topMenu";
 import { NavigationMenu } from "./components/navigationMenu";
 import { Routes, Route } from "react-router-dom";
-import "./main.scss";
+
 import { Orders } from "./pages/orders";
 import { Products } from "./pages/products";
 import { useEffect } from "react";
@@ -9,6 +9,8 @@ import { AnyAction, ThunkDispatch } from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";
 import { ReducerState } from "./types/reducer";
 import { fetchOrders, fetchProducts } from "./redux/actions";
+
+import "./main.scss";
 
 function App() {
   const dispatch = useDispatch<ThunkDispatch<ReducerState, void, AnyAction>>();
