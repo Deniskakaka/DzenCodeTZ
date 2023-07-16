@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { CardAnimation } from "../../ui/cardAnimation/CardAnimation";
 import { Loader } from "../../ui/loader/Loader";
 import { Popup } from "../../components/popup/Popup";
-import { ReducerState } from "../../types/reducer";
 import { Product } from "../../types/product";
 import { ProductCard } from "../../components/productCard/ProductCard";
 import { useEffect, useMemo, useState } from "react";
@@ -11,13 +10,21 @@ import { fetchProducts } from "../../redux/actions";
 import { AnyAction, ThunkDispatch } from "@reduxjs/toolkit";
 
 import "./products.scss";
+import { ProductForm } from "../../components/forms/product/ProductForm";
+import { RootState } from "../../store";
+import { switchOpenFormProduct } from "../../redux/general/reducer";
 
 export const Products = () => {
   const [filter, setFilter] = useState("Monitors");
-  const products = useSelector((state: ReducerState) => state.products);
-  const loader = useSelector((state: ReducerState) => state.loader.products);
-  const trash = useSelector((state: ReducerState) => state.trash);
-  const dispatch = useDispatch<ThunkDispatch<ReducerState, void, AnyAction>>();
+  const products = useSelector((state: RootState) => state.product.products);
+  const loader = useSelector(
+    (state: RootState) => state.product.loader.products
+  );
+  const openForm = useSelector(
+    (state: RootState) => state.general.formOpen.product
+  );
+  const trash = useSelector((state: RootState) => state.product.trash);
+  const dispatch = useDispatch<ThunkDispatch<RootState, void, AnyAction>>();
 
   useEffect(() => {
     if (!products.length) {
@@ -47,10 +54,19 @@ export const Products = () => {
     setFilter(event.target.value);
   };
 
+  const switchShowForm = () => {
+    dispatch(switchOpenFormProduct());
+  };
+
   return (
     <div className="products">
       <div className="products_filter">
-        <h2>Product / {products.length}</h2>
+        <div className="products_filter__wrapper">
+          <button className="products_count__plus" onClick={switchShowForm}>
+            +
+          </button>
+          <h2 className="products_count">Product / {products.length}</h2>
+        </div>
         <label className="products_filter__selector">
           <span>Type</span>
           <select value={filter} onChange={onChangeFilter}>
@@ -61,8 +77,13 @@ export const Products = () => {
       </div>
       {renderProducts}
       {trash && (
-        <div className="popup_wrapper">
+        <div className="modal_wrapper">
           <Popup element={trash} />
+        </div>
+      )}
+      {openForm && (
+        <div className="modal_wrapper">
+          <ProductForm />
         </div>
       )}
     </div>

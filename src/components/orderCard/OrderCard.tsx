@@ -1,14 +1,16 @@
 import { useSelector, useDispatch } from "react-redux";
 
-import { ReducerState } from "../../types/reducer";
 import { Trash } from "../../ui/trash/Trash";
 
-import "./orderCard.scss";
 import { Order } from "../../types/order";
-import { addTrash, orderID, switchOpen } from "../../redux/reducer";
+import { addTrash, orderID } from "../../redux/reducer";
 import { Product } from "../../types/product";
 import { useMemo } from "react";
 import classNames from "classnames";
+import { RootState } from "../../store";
+import { switchOpen } from "../../redux/general/reducer";
+
+import "./orderCard.scss";
 
 type Props = {
   order: Order;
@@ -17,9 +19,9 @@ type Props = {
 
 export const OrderCard: React.FC<Props> = ({ order, trash }) => {
   const dispatch = useDispatch();
-  const isOpen = useSelector((state: ReducerState) => state.isOpen);
-  const products = useSelector((state: ReducerState) => state.products);
-  const orderId = useSelector((state: ReducerState) => state.orderID);
+  const isOpen = useSelector((state: RootState) => state.general.isOpen);
+  const products = useSelector((state: RootState) => state.product.products);
+  const orderId = useSelector((state: RootState) => state.product.orderID);
 
   const handleIsOpen = () => {
     dispatch(switchOpen());

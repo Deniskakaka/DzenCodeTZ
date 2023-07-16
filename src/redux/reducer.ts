@@ -4,12 +4,10 @@ import { ReducerState } from "../types/reducer";
 import { Order } from "../types/order";
 import { fetchOrders, fetchProducts } from "./actions";
 import { Product } from "../types/product";
-import { orders, products } from "../data/orders";
 
 const initialState: ReducerState = {
   orders: [],
   products: [],
-  isOpen: false,
   loader: { orders: false, products: false },
   error: false,
   orderID: null,
@@ -20,12 +18,6 @@ const reducerProducts = createSlice({
   name: "products",
   initialState,
   reducers: {
-    switchOpen: (state: ReducerState) => {
-      return {
-        ...state,
-        isOpen: !state.isOpen,
-      };
-    },
     clearOrders: (state: ReducerState) => {
       return {
         ...state,
@@ -66,6 +58,18 @@ const reducerProducts = createSlice({
         ),
       };
     },
+    addOrder: (state: ReducerState, action: PayloadAction<Order>) => {
+      return {
+        ...state,
+        orders: [...state.orders, action.payload],
+      };
+    },
+    addProduct: (state: ReducerState, action: PayloadAction<Product>) => {
+      return {
+        ...state,
+        products: [...state.products, action.payload],
+      };
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchOrders.pending, (state) => {
@@ -100,12 +104,13 @@ const reducerProducts = createSlice({
 });
 
 export const {
-  switchOpen,
   clearOrders,
   orderID,
   addTrash,
   clearTrash,
   deleteProduct,
   deleteOrder,
+  addOrder,
+  addProduct,
 } = reducerProducts.actions;
 export default reducerProducts.reducer;

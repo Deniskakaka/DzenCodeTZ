@@ -13,12 +13,26 @@
 }
 
 .orders_count {
+  display: flex;
+  align-items: center;
   font-size: 35px;
   width: 90%;
   margin: 0 auto;
   margin-bottom: 50px;
   margin-top: 100px;
   align-self: flex-start;
+
+  &__plus {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 3px solid greenyellow;
+    background-color: green;
+    margin-right: 20px;
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+  }
 }
 
 .orders_items {

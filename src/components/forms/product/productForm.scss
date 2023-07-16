@@ -1,0 +1,76 @@
+.productForm {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  max-width: 600px;
+  background-color: #fff;
+  padding: 20px;
+}
+
+.productForm_close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 10px;
+  border: none;
+  color: #fff;
+  background-color: #5934e7;
+}
+
+.productForm_secondPart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  &__file {
+    margin: 20px;
+    align-self: flex-start;
+  }
+
+  &__status {
+    margin: 20px;
+    align-self: flex-start;
+
+    & label {
+      display: flex;
+
+      & input {
+        margin-left: 10px;
+        margin-right: 10px;
+      }
+    }
+  }
+
+  &__type {
+    margin: 20px;
+    align-self: flex-start;
+  }
+
+  &__guarantee {
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+    align-self: flex-start;
+  }
+
+  &__order {
+    align-self: flex-start;
+    margin-left: 20px;
+
+    & select {
+      width: 100px;
+    }
+  }
+}
+
+.productForm_button {
+  width: 100%;
+  height: 45px;
+  border: none;
+  background-color: #582be7;
+  color: #fff;
+  margin-top: 50px;
+}

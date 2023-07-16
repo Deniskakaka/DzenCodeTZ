@@ -13,7 +13,7 @@ export type Product = {
   id: number;
   serialNumber: number;
   isNew: number;
-  photo: string;
+  photo: File | null | string;
   title: string;
   type: string;
   specification: string;

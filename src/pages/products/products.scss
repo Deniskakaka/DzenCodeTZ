@@ -15,11 +15,6 @@
   margin-top: 50px;
   margin-left: 80px;
 
-  & h2 {
-    margin-right: 40px;
-    font-size: 28px;
-  }
-
   &__selector {
     & select {
       width: 200px;
@@ -28,6 +23,28 @@
       border-radius: 10px;
       margin-left: 20px;
     }
+  }
+
+  &__wrapper {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.products_count {
+  margin-right: 40px;
+  font-size: 35px;
+
+  &__plus {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 3px solid greenyellow;
+    background-color: green;
+    margin-right: 20px;
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
   }
 }
 

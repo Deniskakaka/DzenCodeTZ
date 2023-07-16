@@ -1,0 +1,27 @@
+.orderForm {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.orderForm_close {
+  width: fit-content;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 10px;
+  background-color: #5934e7;
+  color: #fff;
+  border: none;
+}
+
+.orderForm__button {
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  color: #fff;
+  background-color: #5934e7;
+}
