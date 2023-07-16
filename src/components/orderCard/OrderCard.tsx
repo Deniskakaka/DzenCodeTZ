@@ -36,20 +36,16 @@ export const OrderCard: React.FC<Props> = ({ order, trash }) => {
     dispatch(addTrash(order));
   };
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const filteredOutProducts = () => {
-    return products.filter((product: Product) => product.order === order.id);
-  };
+  const filteredOutProducts = useMemo(() => {
+    return products.filter((product: Product) => +product.order === +order.id);
+  }, [order.id, products]);
 
   const renderPriceUSD = useMemo(() => {
-    if (filteredOutProducts().length) {
+    if (filteredOutProducts.length) {
       return (
         <div className="orderCard_price__usd">
-          {filteredOutProducts().reduce(
-            (acc, el) => acc + el.price[0].value,
-            0
-          )}
-          {" " + filteredOutProducts()[0].price[0].symbol}
+          {filteredOutProducts.reduce((acc, el) => acc + el.price[0].value, 0)}
+          {" " + filteredOutProducts[0].price[0].symbol}
         </div>
       );
     } else {
@@ -58,14 +54,11 @@ export const OrderCard: React.FC<Props> = ({ order, trash }) => {
   }, [filteredOutProducts]);
 
   const renderPriceUAH = useMemo(() => {
-    if (filteredOutProducts().length) {
+    if (filteredOutProducts.length) {
       return (
         <div className="orderCard_price__uah">
-          {filteredOutProducts().reduce(
-            (acc, el) => acc + el.price[1].value,
-            0
-          )}
-          {" " + filteredOutProducts()[0].price[1].symbol}
+          {filteredOutProducts.reduce((acc, el) => acc + el.price[1].value, 0)}
+          {" " + filteredOutProducts[0].price[1].symbol}
         </div>
       );
     } else {
@@ -92,7 +85,7 @@ export const OrderCard: React.FC<Props> = ({ order, trash }) => {
       </div>
     );
   };
-
+  console.log(filteredOutProducts.length);
   return (
     <div
       className={classNames("orderCard", {
@@ -102,7 +95,7 @@ export const OrderCard: React.FC<Props> = ({ order, trash }) => {
       {!isOpen && <span className="orderCard_title">{order.title}</span>}
       <div className="orderCard_products">
         {!trash && <button onClick={handleIsOpen} disabled={isOpen}></button>}
-        <span>{filteredOutProducts().length} Products</span>
+        <span>{filteredOutProducts.length} Products</span>
       </div>
       <span className="orderCard_data">{renderDate()}</span>
       <div className="orderCard_price">

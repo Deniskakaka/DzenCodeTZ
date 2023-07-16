@@ -32,28 +32,28 @@ export const ProductForm = () => {
       end: formattedDateEnd,
       usd: "",
       uah: "",
-      order: "1",
+      order: 1,
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
       dispatch(
         addProduct({
           id: Date.now(),
-          serialNumber: +formik.values.serialNumber,
-          isNew: formik.values.status,
-          photo: formik.values.photo,
-          title: formik.values.title,
-          type: formik.values.type,
-          specification: formik.values.specification,
+          serialNumber: +values.serialNumber,
+          isNew: values.status,
+          photo: values.photo,
+          title: values.title,
+          type: values.type,
+          specification: values.specification,
           guarantee: {
-            start: `${formik.values.start} ${currentTime}`,
-            end: `${formik.values.end} ${currentTime}`,
+            start: `${values.start} ${currentTime}`,
+            end: `${values.end} ${currentTime}`,
           },
           price: [
-            { value: +formik.values.usd, symbol: "USD", isDefault: 0 },
-            { value: +formik.values.uah, symbol: "UAH", isDefault: 1 },
+            { value: +values.usd, symbol: "USD", isDefault: 0 },
+            { value: +values.uah, symbol: "UAH", isDefault: 1 },
           ],
-          order: 1,
+          order: values.order,
           date: `${formattedDateStart} ${currentTime}`,
         })
       );
@@ -185,7 +185,11 @@ export const ProductForm = () => {
             onChange={formik.handleChange}
           >
             {orders.map((order: Order) => {
-              return <option key={order.id}>{order.id}</option>;
+              return (
+                <option key={order.id} value={order.id}>
+                  {order.id}
+                </option>
+              );
             })}
           </select>
         </label>

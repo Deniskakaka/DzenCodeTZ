@@ -53,6 +53,7 @@ export const Orders = () => {
   }, [orders, loader]);
 
   const renderProducts = useMemo(() => {
+    console.log(products);
     if (loader.products) {
       return <Loader />;
     } else {

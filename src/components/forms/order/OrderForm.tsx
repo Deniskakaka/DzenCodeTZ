@@ -1,88 +1,63 @@
 import { useState } from "react";
+import { useFormik } from "formik";
 import { Field } from "../field/Field";
 import { useDispatch } from "react-redux";
 import { addOrder } from "../../../redux/reducer";
 import { switchOpenFormOrder } from "../../../redux/general/reducer";
+import { validationSchema } from "../shemas/orderShema";
 
 import "./orderForm.scss";
+import { currentTime, formattedDateStart } from "../../../helpers/data";
 
 export const OrderForm = () => {
-  const [title, setTitle] = useState("");
-  const [describe, setDescribe] = useState("");
-  const [error, setError] = useState({
-    title: false,
-    describe: false,
-  });
   const dispatch = useDispatch();
-
-  const onChangeField = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-
-    if (name === "title") {
-      setTitle(value);
-      setError((prevError) => ({ ...prevError, title: value === "" }));
-    } else if (name === "describe") {
-      setDescribe(value);
-      setError((prevError) => ({ ...prevError, describe: value === "" }));
-    }
-  };
-
-  const handleAddOrder = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
-    const currentDate = new Date();
-
-    const year = currentDate.getFullYear();
-    const month = String(currentDate.getMonth() + 1).padStart(2, "0");
-    const day = String(currentDate.getDate()).padStart(2, "0");
-    const hours = String(currentDate.getHours()).padStart(2, "0");
-    const minutes = String(currentDate.getMinutes()).padStart(2, "0");
-    const seconds = String(currentDate.getSeconds()).padStart(2, "0");
-
-    const formattedDate = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
-
-    setError({
-      title: title === "",
-      describe: describe === "",
-    });
-
-    if (title && describe) {
+  const formik = useFormik({
+    initialValues: {
+      title: "",
+      describe: "",
+    },
+    validationSchema: validationSchema,
+    onSubmit: (values) => {
       dispatch(
         addOrder({
           id: Date.now(),
-          title: title,
-          date: formattedDate,
-          description: describe,
+          title: formik.values.title,
+          date: `${formattedDateStart} ${currentTime}`,
+          description: formik.values.describe,
         })
       );
-      dispatch(switchOpenFormOrder());
-    }
+      formik.resetForm();
+    },
+  });
+
+  const closeForm = () => {
+    dispatch(switchOpenFormOrder());
   };
 
   return (
-    <form onSubmit={handleAddOrder} className="orderForm">
-      <button
-        className="orderForm_close"
-        onClick={() => dispatch(switchOpenFormOrder())}
-      >
+    <form
+      className="orderForm "
+      onSubmit={formik.errors && formik.handleSubmit}
+    >
+      <button className="orderForm_close" onClick={closeForm}>
         close
       </button>
       <Field
-        value={title}
-        onChange={onChangeField}
+        value={formik.values.title}
+        onChange={formik.handleChange}
         placeholder="title order"
         name="title"
         title="Title"
-        error={error.title}
+        error={formik.errors.title}
         type="text"
       />
       <Field
-        value={describe}
-        onChange={onChangeField}
+        value={formik.values.describe}
+        onChange={formik.handleChange}
         placeholder="describe order"
         name="describe"
         title="Describe"
-        error={error.describe}
+        error={formik.errors.describe}
         type="text"
       />
       <button type="submit" className="orderForm__button">
