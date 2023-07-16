@@ -4,8 +4,8 @@ import { useDispatch } from "react-redux";
 import { clearTrash, deleteOrder, deleteProduct } from "../../redux/reducer";
 import { Order } from "../../types/order";
 import { Product } from "../../types/product";
-import { ProductCard } from "../productCard/ProductCard";
-import { OrderCard } from "../orderCard/OrderCard";
+import { ProductCard } from "../productCard";
+import { OrderCard } from "../orderCard";
 
 import "./popup.scss";
 

@@ -1,13 +1,16 @@
-import { useState } from "react";
+import { lazy } from "react";
 import { useFormik } from "formik";
-import { Field } from "../field/Field";
 import { useDispatch } from "react-redux";
+
 import { addOrder } from "../../../redux/reducer";
 import { switchOpenFormOrder } from "../../../redux/general/reducer";
 import { validationSchema } from "../shemas/orderShema";
 
-import "./orderForm.scss";
 import { currentTime, formattedDateStart } from "../../../helpers/data";
+
+import "./orderForm.scss";
+
+const Field = lazy(() => import("../field/index"));
 
 export const OrderForm = () => {
   const dispatch = useDispatch();
@@ -45,20 +48,24 @@ export const OrderForm = () => {
       <Field
         value={formik.values.title}
         onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
         placeholder="title order"
         name="title"
         title="Title"
         error={formik.errors.title}
         type="text"
+        touched={formik.touched.title}
       />
       <Field
         value={formik.values.describe}
         onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
         placeholder="describe order"
         name="describe"
         title="Describe"
         error={formik.errors.describe}
         type="text"
+        touched={formik.touched.describe}
       />
       <button type="submit" className="orderForm__button">
         ADD

@@ -1,43 +1,37 @@
-import { OrderCard } from "../../components/orderCard/OrderCard";
+import { useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import classNames from "classnames";
 
-import { useMemo } from "react";
 import { Loader } from "../../ui/loader/Loader";
 import { Order } from "../../types/order";
 import { Product } from "../../types/product";
-import { ProductCard } from "../../components/productCard/ProductCard";
-import { Popup } from "../../components/popup/Popup";
-
-import "./orders.scss";
+import { ProductCard } from "../../components/productCard";
+import { Popup } from "../../components/popup";
 import { CardAnimation } from "../../ui/cardAnimation/CardAnimation";
-import { OrderForm } from "../../components/forms/order/OrderForm";
+import { OrderForm } from "../../components/forms/order";
+import { OrderCard } from "../../components/orderCard";
 import {
   switchOpenFormOrder,
   switchOpenFormProduct,
 } from "../../redux/general/reducer";
 import { RootState } from "../../store";
-import { ProductForm } from "../../components/forms/product/ProductForm";
+import { ProductForm } from "../../components/forms/product";
+
+import "./orders.scss";
 
 export const Orders = () => {
-  const isOpen = useSelector((state: RootState) => state.general.isOpen);
-  const orders = useSelector((state: RootState) => state.product.orders);
-  const products = useSelector((state: RootState) => state.product.products);
-  const orderId = useSelector((state: RootState) => state.product.orderID);
-  const loader = useSelector((state: RootState) => state.product.loader);
-  const trash = useSelector((state: RootState) => state.product.trash);
-  const openFormOrder = useSelector(
-    (state: RootState) => state.general.formOpen.order
+  const { orders, products, orderID, loader, trash } = useSelector(
+    (state: RootState) => state.product
   );
-  const openFormProduct = useSelector(
-    (state: RootState) => state.general.formOpen.product
-  );
+  const { isOpen, formOpen } = useSelector((state: RootState) => state.general);
+
   const dispatch = useDispatch();
 
   const switchShowFormOrder = () => {
     dispatch(switchOpenFormOrder());
   };
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const switchShowFormProduct = () => {
     dispatch(switchOpenFormProduct());
   };
@@ -66,7 +60,7 @@ export const Orders = () => {
             +
           </button>
           {products
-            .filter((product: Product) => +product.order === orderId)
+            .filter((product: Product) => +product.order === orderID)
             .map((product: Product, index: number) => (
               <CardAnimation index={index} key={product.id}>
                 <ProductCard product={product} key={product.id} />
@@ -75,7 +69,7 @@ export const Orders = () => {
         </div>
       );
     }
-  }, [loader.products, orderId, products]);
+  }, [loader.products, orderID, products, switchShowFormProduct]);
 
   return (
     <div className="orders">
@@ -100,10 +94,10 @@ export const Orders = () => {
           <Popup element={trash} />
         </div>
       )}
-      {openFormOrder || openFormProduct ? (
+      {formOpen.order || formOpen.product ? (
         <div className="modal_wrapper">
-          {openFormOrder && <OrderForm />}
-          {openFormProduct && <ProductForm />}
+          {formOpen.order && <OrderForm />}
+          {formOpen.product && <ProductForm />}
         </div>
       ) : null}
     </div>

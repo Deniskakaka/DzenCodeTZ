@@ -1,12 +1,12 @@
+import { useMemo } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import classNames from "classnames";
 
 import { Trash } from "../../ui/trash/Trash";
 
 import { Order } from "../../types/order";
 import { addTrash, orderID } from "../../redux/reducer";
 import { Product } from "../../types/product";
-import { useMemo } from "react";
-import classNames from "classnames";
 import { RootState } from "../../store";
 import { switchOpen } from "../../redux/general/reducer";
 
@@ -85,7 +85,7 @@ export const OrderCard: React.FC<Props> = ({ order, trash }) => {
       </div>
     );
   };
-  console.log(filteredOutProducts.length);
+
   return (
     <div
       className={classNames("orderCard", {

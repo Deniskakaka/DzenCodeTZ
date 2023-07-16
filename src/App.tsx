@@ -1,9 +1,9 @@
-import { Header } from "./components/header/Header";
-import { SaidBar } from "./components/saidBar/SaidBar";
+import { TopMenu } from "./components/topMenu";
+import { NavigationMenu } from "./components/navigationMenu";
 import { Routes, Route } from "react-router-dom";
 import "./main.scss";
-import { Orders } from "./pages/orders/Orders";
-import { Products } from "./pages/products/Products";
+import { Orders } from "./pages/orders";
+import { Products } from "./pages/products";
 import { useEffect } from "react";
 import { AnyAction, ThunkDispatch } from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";
@@ -20,9 +20,10 @@ function App() {
 
   return (
     <div className="app">
-      <Header />
-      <SaidBar />
+      <TopMenu />
+      <NavigationMenu />
       <Routes>
+        <Route path="/" element={<>This start page, choose category</>} />
         <Route path="/orders" element={<Orders />} />
         <Route path="/products" element={<Products />} />
         <Route

@@ -3,21 +3,25 @@ import "./field.scss";
 type Props = {
   value: string | number;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onBlur: (event: React.FocusEvent<HTMLInputElement>) => void;
   placeholder: string;
   name: string;
   title: string;
   type: string;
   error: any;
+  touched: boolean | undefined;
 };
 
-export const Field: React.FC<Props> = ({
+const Field: React.FC<Props> = ({
   value,
   onChange,
+  onBlur,
   placeholder,
   name,
   title,
   type,
   error,
+  touched,
 }) => {
   return (
     <label className="field">
@@ -27,9 +31,16 @@ export const Field: React.FC<Props> = ({
         placeholder={placeholder}
         value={value}
         onChange={onChange}
+        onBlur={onBlur}
         name={name}
       />
-      <div className="field_error">{error && <span>{error}</span>}</div>
+      {touched && (
+        <div className="field_error">
+          <span>{error}</span>
+        </div>
+      )}
     </label>
   );
 };
+
+export default Field;

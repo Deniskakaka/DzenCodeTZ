@@ -1,9 +1,11 @@
 import classNames from "classnames";
+import { useDispatch } from "react-redux";
+
 import { Product } from "../../types/product";
 import { Trash } from "../../ui/trash/Trash";
-import "./productCard.scss";
 import { addTrash } from "../../redux/reducer";
-import { useDispatch } from "react-redux";
+
+import "./productCard.scss";
 
 type Props = {
   product: Product;
@@ -51,6 +53,14 @@ export const ProductCard: React.FC<Props> = ({ product, trash }) => {
       <div className="productCard_info">
         <span className="productCard_info__title">{product.title}</span>
         <span className="productCard_info__number">{product.serialNumber}</span>
+      </div>
+      <div className="productCard_price">
+        <span className="productCard_price__usd">
+          {product.price[0].value} {product.price[0].symbol}
+        </span>
+        <span className="productCard_price__uah">
+          {product.price[1].value} {product.price[1].symbol}
+        </span>
       </div>
       <span className="productCard_status">
         {product.isNew ? "Free" : "Repeire"}

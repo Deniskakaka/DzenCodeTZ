@@ -1,7 +1,8 @@
 import { NavLink } from "react-router-dom";
+
 import "./saidBar.scss";
 
-export const SaidBar = () => {
+export const NavigationMenu = () => {
   return (
     <div className="saidBar">
       <div className="saidBar_avatar">

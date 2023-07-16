@@ -1,7 +1,8 @@
 import { useEffect, useMemo, useState } from "react";
+
 import "./header.scss";
 
-export const Header = () => {
+export const TopMenu = () => {
   const [time, setTime] = useState(new Date());
 
   useEffect(() => {

@@ -1,8 +1,8 @@
-import { ChangeEvent } from "react";
+import { ChangeEvent, lazy } from "react";
 import { useFormik } from "formik";
-import { Field } from "../field/Field";
-import { validationSchema } from "../shemas/productShame";
 import { useDispatch, useSelector } from "react-redux";
+
+import { validationSchema } from "../shemas/productShame";
 import { Order } from "../../../types/order";
 import { addProduct } from "../../../redux/reducer";
 import {
@@ -11,9 +11,12 @@ import {
   formattedDateStart,
 } from "../../../helpers/data";
 
-import "./productForm.scss";
 import { RootState } from "../../../store";
 import { switchOpenFormProduct } from "../../../redux/general/reducer";
+
+import "./productForm.scss";
+
+const Field = lazy(() => import("../field/index"));
 
 export const ProductForm = () => {
   const orders = useSelector((state: RootState) => state.product.orders);
@@ -81,47 +84,57 @@ export const ProductForm = () => {
       <Field
         value={formik.values.title}
         onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
         placeholder="Enter Title"
         name="title"
         title="title"
         type="text"
         error={formik.errors.title}
+        touched={formik.touched.title}
       />
       <Field
         value={formik.values.serialNumber}
         onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
         placeholder="Enter serial number"
         name="serialNumber"
         title="Serial number"
         type="text"
         error={formik.errors.serialNumber}
+        touched={formik.touched.serialNumber}
       />
       <Field
         value={formik.values.specification}
         onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
         placeholder="Enter specification"
         name="specification"
         title="Specification"
         type="text"
         error={formik.errors.specification}
+        touched={formik.touched.specification}
       />
       <Field
         value={formik.values.usd}
         onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
         placeholder="Enter cost USD"
         name="usd"
         title="USD"
         type="text"
         error={formik.errors.usd}
+        touched={formik.touched.usd}
       />
       <Field
         value={formik.values.uah}
         onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
         placeholder="Enter cost UAH"
         name="uah"
         title="UAH"
         type="text"
         error={formik.errors.uah}
+        touched={formik.touched.uah}
       />
       <div className="productForm_secondPart">
         <label className="productForm_secondPart__file">
