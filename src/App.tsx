@@ -25,7 +25,10 @@ function App() {
       <TopMenu />
       <NavigationMenu />
       <Routes>
-        <Route path="/" element={<>This start page, choose category</>} />
+        <Route
+          path="/"
+          element={<div className="home">This start page, choose category</div>}
+        />
         <Route path="/orders" element={<Orders />} />
         <Route path="/products" element={<Products />} />
         <Route

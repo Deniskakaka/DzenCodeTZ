@@ -2,6 +2,7 @@ import { ChangeEvent, lazy } from "react";
 import { useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 
+import { Field } from "../field/index";
 import { validationSchema } from "../shemas/productShame";
 import { Order } from "../../../types/order";
 import { addProduct } from "../../../redux/reducer";
@@ -15,8 +16,6 @@ import { RootState } from "../../../store";
 import { switchOpenFormProduct } from "../../../redux/general/reducer";
 
 import "./productForm.scss";
-
-const Field = lazy(() => import("../field/index"));
 
 export const ProductForm = () => {
   const orders = useSelector((state: RootState) => state.product.orders);

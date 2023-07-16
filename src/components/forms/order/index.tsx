@@ -1,7 +1,7 @@
-import { lazy } from "react";
 import { useFormik } from "formik";
 import { useDispatch } from "react-redux";
 
+import { Field } from "../field/index";
 import { addOrder } from "../../../redux/reducer";
 import { switchOpenFormOrder } from "../../../redux/general/reducer";
 import { validationSchema } from "../shemas/orderShema";
@@ -9,8 +9,6 @@ import { validationSchema } from "../shemas/orderShema";
 import { currentTime, formattedDateStart } from "../../../helpers/data";
 
 import "./orderForm.scss";
-
-const Field = lazy(() => import("../field/index"));
 
 export const OrderForm = () => {
   const dispatch = useDispatch();

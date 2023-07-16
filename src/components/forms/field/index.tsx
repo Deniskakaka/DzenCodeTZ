@@ -12,7 +12,7 @@ type Props = {
   touched: boolean | undefined;
 };
 
-const Field: React.FC<Props> = ({
+export const Field: React.FC<Props> = ({
   value,
   onChange,
   onBlur,
@@ -42,5 +42,3 @@ const Field: React.FC<Props> = ({
     </label>
   );
 };
-
-export default Field;

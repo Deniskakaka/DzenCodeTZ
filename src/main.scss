@@ -30,3 +30,13 @@ body {
   height: calc(100% - 90px);
   background-color: #44353480;
 }
+
+.home {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: calc(100% - 250px);
+  font-size: 40px;
+  text-transform: uppercase;
+}
