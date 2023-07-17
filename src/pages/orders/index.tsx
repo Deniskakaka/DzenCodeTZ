@@ -2,12 +2,12 @@ import { useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import classNames from "classnames";
 
-import { Loader } from "../../ui/loader/Loader";
+import { Loader } from "../../ui/loader";
 import { Order } from "../../types/order";
 import { Product } from "../../types/product";
 import { ProductCard } from "../../components/productCard";
 import { Popup } from "../../components/popup";
-import { CardAnimation } from "../../ui/cardAnimation/CardAnimation";
+import { CardAnimation } from "../../ui/cardAnimation";
 import { OrderForm } from "../../components/forms/order";
 import { OrderCard } from "../../components/orderCard";
 import {
@@ -47,18 +47,22 @@ export const Orders = () => {
   }, [orders, loader]);
 
   const renderProducts = useMemo(() => {
-    console.log(products);
     if (loader.products) {
       return <Loader />;
     } else {
       return (
         <div className="orders_products">
-          <button
-            className="orders_count__plus"
-            onClick={switchShowFormProduct}
-          >
-            +
-          </button>
+          <div className="orders_products__title">
+            <button
+              className="orders_count__plus"
+              onClick={switchShowFormProduct}
+            >
+              +
+            </button>
+            <h2>
+              {orders.find((order: Order) => order.id === orderID)?.title}
+            </h2>
+          </div>
           {products
             .filter((product: Product) => +product.order === orderID)
             .map((product: Product, index: number) => (
@@ -69,7 +73,7 @@ export const Orders = () => {
         </div>
       );
     }
-  }, [loader.products, orderID, products, switchShowFormProduct]);
+  }, [loader.products, orderID, orders, products, switchShowFormProduct]);
 
   return (
     <div className="orders">

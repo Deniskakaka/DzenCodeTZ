@@ -1,13 +1,8 @@
-import {
-  PayloadAction,
-  createAction,
-  createAsyncThunk,
-} from "@reduxjs/toolkit";
+import { createAsyncThunk } from "@reduxjs/toolkit";
 import { responseOrders, responseProducts } from "../api/response";
 import { Product } from "../types/product";
 import { AppDispatch } from "../store";
 import { Order } from "../types/order";
-import { ReducerState } from "../types/reducer";
 
 export const fetchOrders = createAsyncThunk<
   Order[],

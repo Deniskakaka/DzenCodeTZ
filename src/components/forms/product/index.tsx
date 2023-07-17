@@ -1,4 +1,4 @@
-import { ChangeEvent, lazy } from "react";
+import { ChangeEvent } from "react";
 import { useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -80,87 +80,94 @@ export const ProductForm = () => {
       >
         close
       </button>
-      <Field
-        value={formik.values.title}
-        onChange={formik.handleChange}
-        onBlur={formik.handleBlur}
-        placeholder="Enter Title"
-        name="title"
-        title="title"
-        type="text"
-        error={formik.errors.title}
-        touched={formik.touched.title}
-      />
-      <Field
-        value={formik.values.serialNumber}
-        onChange={formik.handleChange}
-        onBlur={formik.handleBlur}
-        placeholder="Enter serial number"
-        name="serialNumber"
-        title="Serial number"
-        type="text"
-        error={formik.errors.serialNumber}
-        touched={formik.touched.serialNumber}
-      />
-      <Field
-        value={formik.values.specification}
-        onChange={formik.handleChange}
-        onBlur={formik.handleBlur}
-        placeholder="Enter specification"
-        name="specification"
-        title="Specification"
-        type="text"
-        error={formik.errors.specification}
-        touched={formik.touched.specification}
-      />
-      <Field
-        value={formik.values.usd}
-        onChange={formik.handleChange}
-        onBlur={formik.handleBlur}
-        placeholder="Enter cost USD"
-        name="usd"
-        title="USD"
-        type="text"
-        error={formik.errors.usd}
-        touched={formik.touched.usd}
-      />
-      <Field
-        value={formik.values.uah}
-        onChange={formik.handleChange}
-        onBlur={formik.handleBlur}
-        placeholder="Enter cost UAH"
-        name="uah"
-        title="UAH"
-        type="text"
-        error={formik.errors.uah}
-        touched={formik.touched.uah}
-      />
+      <div className="productForm_firstPart">
+        <Field
+          value={formik.values.title}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          placeholder="Enter Title"
+          name="title"
+          title="title"
+          type="text"
+          error={formik.errors.title}
+          touched={formik.touched.title}
+        />
+        <Field
+          value={formik.values.serialNumber}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          placeholder="Enter serial number"
+          name="serialNumber"
+          title="Serial number"
+          type="text"
+          error={formik.errors.serialNumber}
+          touched={formik.touched.serialNumber}
+        />
+        <Field
+          value={formik.values.specification}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          placeholder="Enter specification"
+          name="specification"
+          title="Specification"
+          type="text"
+          error={formik.errors.specification}
+          touched={formik.touched.specification}
+        />
+        <Field
+          value={formik.values.usd}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          placeholder="Enter cost USD"
+          name="usd"
+          title="USD"
+          type="text"
+          error={formik.errors.usd}
+          touched={formik.touched.usd}
+        />
+        <Field
+          value={formik.values.uah}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          placeholder="Enter cost UAH"
+          name="uah"
+          title="UAH"
+          type="text"
+          error={formik.errors.uah}
+          touched={formik.touched.uah}
+        />
+      </div>
       <div className="productForm_secondPart">
         <label className="productForm_secondPart__file">
+          <span>Image</span>
           <input type="file" onChange={handleFileChange} accept="image/*" />
         </label>
         <div className="productForm_secondPart__status">
-          <label>
-            <span>Free</span>
-            <input
-              type="radio"
-              name="status"
-              value="1"
-              checked
-              onChange={formik.handleChange}
-            />
-          </label>
-          <label>
-            <span>Repeire</span>
-            <input
-              type="radio"
-              name="status"
-              value="0"
-              onChange={formik.handleChange}
-            />
-          </label>
+          <span>Status</span>
+          <div>
+            <label>
+              <span>Free</span>
+              <input
+                type="radio"
+                name="status"
+                value="1"
+                checked
+                onChange={formik.handleChange}
+              />
+            </label>
+            <label>
+              <span>Repeire</span>
+              <input
+                type="radio"
+                name="status"
+                value="0"
+                onChange={formik.handleChange}
+              />
+            </label>
+          </div>
         </div>
         <label className="productForm_secondPart__type">
+          <span>Type</span>
           <select
             name="type"
             onChange={formik.handleChange}
@@ -191,6 +198,7 @@ export const ProductForm = () => {
           </label>
         </div>
         <label className="productForm_secondPart__order">
+          <span>Order</span>
           <select
             name="order"
             value={formik.values.order}

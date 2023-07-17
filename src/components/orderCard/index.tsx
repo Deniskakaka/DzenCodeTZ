@@ -2,7 +2,7 @@ import { useMemo } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import classNames from "classnames";
 
-import { Trash } from "../../ui/trash/Trash";
+import { Trash } from "../../ui/trash";
 
 import { Order } from "../../types/order";
 import { addTrash, orderID } from "../../redux/reducer";

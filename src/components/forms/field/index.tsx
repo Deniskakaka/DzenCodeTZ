@@ -34,11 +34,9 @@ export const Field: React.FC<Props> = ({
         onBlur={onBlur}
         name={name}
       />
-      {touched && (
-        <div className="field_error">
-          <span>{error}</span>
-        </div>
-      )}
+      <div className="field_error">
+        <span>{touched && error}</span>
+      </div>
     </label>
   );
 };

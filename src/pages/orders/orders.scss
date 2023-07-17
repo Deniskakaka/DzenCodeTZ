@@ -50,6 +50,12 @@
   width: 60%;
   overflow: hidden;
 
+  &__title {
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+  }
+
   & h2 {
     padding-left: 20px;
   }

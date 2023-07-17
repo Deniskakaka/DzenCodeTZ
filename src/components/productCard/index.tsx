@@ -2,7 +2,7 @@ import classNames from "classnames";
 import { useDispatch } from "react-redux";
 
 import { Product } from "../../types/product";
-import { Trash } from "../../ui/trash/Trash";
+import { Trash } from "../../ui/trash";
 import { addTrash } from "../../redux/reducer";
 
 import "./productCard.scss";

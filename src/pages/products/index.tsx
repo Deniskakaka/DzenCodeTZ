@@ -1,8 +1,8 @@
 import { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { CardAnimation } from "../../ui/cardAnimation/CardAnimation";
-import { Loader } from "../../ui/loader/Loader";
+import { CardAnimation } from "../../ui/cardAnimation";
+import { Loader } from "../../ui/loader";
 import { Popup } from "../../components/popup";
 import { Product } from "../../types/product";
 import { ProductCard } from "../../components/productCard";
